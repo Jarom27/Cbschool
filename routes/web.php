@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','IndexController@getIndex');
+Route::get('/Notice','NoticeController@getCatalog');
+Route::get('/Notice/show/{title}','NoticeController@getShow');
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
