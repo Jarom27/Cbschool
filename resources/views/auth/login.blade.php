@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('noticia')
+@section('content')
 <div class="container">
     <div class="row" style="margin-top:20px">
         <div class="col s2"></div>
