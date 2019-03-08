@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <span>Dashboard</span>
+                    <h1>Dashboard</h1>
                 </div>
 
                 <div class="card-content">
