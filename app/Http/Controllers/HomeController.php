@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
+    private $user;
     /**
      * Create a new controller instance.
      *
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('Home.home');
+        $this->user=Auth::user();
+        return view('Home.home')->with("user",$this->user);
     }
 }

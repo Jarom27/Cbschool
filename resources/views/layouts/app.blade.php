@@ -61,7 +61,18 @@
                     </ul>
             </div>
         </nav>
-
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li>
+                <div class="logo center ">
+                    <img src="/CB/Resources/images/Logo.png" width="250px" style="margin-top:15px"/>
+                    <div class="divider"></div>
+                </div>   
+            </li>
+            <li><h6 class="center-align">{{$user->name}}</h6></li>
+            <li><a href="#!">First Sidebar Link</a></li>
+            <li><a href="#!">Second Sidebar Link</a></li>
+          </ul>
+          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <div class="py-4">
             @yield('content')
         </div>
@@ -77,6 +88,14 @@
         </footer>
 </body>
     <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.sidenav');
+        var options = {
+        };
+        var instances = M.Sidenav.init(elems, options);
+  });
+    </script>
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{asset('/js/materialize.js')}}"></script>
     <script src="{{asset('/js/site.js')}}"></script>

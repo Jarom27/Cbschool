@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 
 $(document).ready(function () {
-    $(".btn").sidenav();
+    $(".sidenav").sidenav();
     $(".dropdown-trigger").dropdown();
     
     $('.carousel.carousel-slider').carousel({
