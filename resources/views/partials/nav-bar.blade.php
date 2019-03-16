@@ -1,4 +1,4 @@
-@if ($n)
+@if ($EstiloDePagina!="default")
     <div class="logo center ">
         <img src="/CB/Resources/images/Logo.png"/>
         <div class="divider"></div>

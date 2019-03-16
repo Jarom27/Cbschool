@@ -9,5 +9,5 @@ class Notice extends Model
     //
     protected $table ="noticie";
     protected $primaryKey="idnotice";
-    protected $fillable=["title","subtitle","autor","fecha","description"];
+    protected $fillable=["title","subtitle","autor","fecha","description","images_num"];
 }

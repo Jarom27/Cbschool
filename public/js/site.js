@@ -18,14 +18,4 @@ $(document).ready(function () {
         bottom: 200
     });
     $('.modal').modal();
-    $('#insertar').click(function(){
-        var num= $("#num_imgs").val();
-        var info = {
-            "images_num": num
-        }
-        $.post("/cbweb/public/Notice/add",info,function(){
-            alert("enviamos");
-        });
-        
-    });
 });

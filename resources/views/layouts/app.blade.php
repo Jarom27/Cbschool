@@ -8,7 +8,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Cbschool3</title>
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Styles -->
@@ -16,63 +15,66 @@
     <link rel="stylesheet" href="{{asset('css/site.css')}}">
 </head>
 <body>
-        <nav class="nav-wrapper">
-            <div class="container">
+        <nav class="nav-wrapper orange darken-1">
+                <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+           
+                    
                 <a class="brand-logo" href="{{ url('/') }}">
                     {{ config('app.name', 'Cbschool3') }}
                 </a>
-                <div class="right" style="width:103px">
-                    <a class="dropdown-trigger show-on-large" href="#!" data-target="options">Opciones<i class="material-icons right " style="margin-top:4px">arrow_drop_down</i></a>
-                </div>
                 
                     <!-- Left Side Of Navbar -->
 
                     <!-- Right Side Of Navbar -->
                     <ul class="dropdown-content " id="options" style="with:210px">
                         <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle orange-text text-darken-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item orange-text text-darken-1" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-            </div>
+                        
+                </ul>
         </nav>
-        <ul id="slide-out" class="sidenav sidenav-fixed">
+        <ul id="slide-out" class="sidenav ">
             <li>
                 <div class="logo center ">
                     <img src="/CB/Resources/images/Logo.png" width="250px" style="margin-top:15px"/>
                     <div class="divider"></div>
                 </div>   
             </li>
-            <li><h6 class="center-align">{{$user->name}}</h6></li>
-            <li><a href="#!">First Sidebar Link</a></li>
-            <li><a href="#!">Second Sidebar Link</a></li>
+            <li>
+                <ul style="margin-top:15px">
+                    @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle orange-text text-darken-1" href="{{route('home')}}">
+                            <i class="material-icons" style="margin-right:4px">account_box</i>{{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            
+                        </div>
+                    </li>
+                @endguest
+            </li>
+            <li><a href="{{url('/home/panel')}}"><i class="material-icons" style="margin-right:4px">dashboard</i>Panel</a></li>
+            <li><a href="#!"><i class="material-icons" style="margin-right:4px">settings</i>Configuracion</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class=" orange-text text-darken-1" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                 <i class="material-icons" style="margin-right:4px">exit_to_app</i>{{ __('Logout') }}</a>
+             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                 @csrf
+             </form>
+            </ul>
+            </li>
           </ul>
-          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          
         <div class="py-4">
             @yield('content')
         </div>

@@ -12,8 +12,14 @@
 */
 
 Route::get('/','IndexController@getIndex');
-Route::get('/Notice','NoticeController@getCatalog');
-Route::get('/Notice/show/{title}','NoticeController@getShow');
-Route::get('/Notice/add','NoticeController@getadd');
+Route::get('/Notice','NoticeController@DarVistaListadoDeNoticias');
+Route::get('/Notice/show/{title}','NoticeController@DarVistaDeNoticiaSeleccionada');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => "auth"], function () {
+    Route::get('/home/panel',"HomeController@Panel");
+    Route::get('/home/add',"NoticeController@getVistaAdd");
+    Route::post('/home/add', "NoticeController@AlmacenarNoticia");
+    Route::delete('/home/delete',["as"=>"borrar","uses"=>"NoticeController@DeleteNoticiayRecursos"]);
+    Route::put('/home/edit',["as"=>"edit","uses"=>"NoticeController@Update"]);
+});

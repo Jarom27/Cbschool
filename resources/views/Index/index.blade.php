@@ -1,12 +1,13 @@
 @extends('layouts.layout')
 @section('content')
 <div class="container">
+    <!--TODO: es necesario ver que el estilo de la pagina se vea bien en celular-->
     <div class="carrusel carousel carousel-slider center">
-        @foreach ($five as $item)
+        @foreach ($ListadoDeCincoNoticias as $item)
         <div class="carousel-item ">
-            <img src="/CB/Resources/images/1.jpg">
+            <img src="{{ asset("storage/".$item['title']."/1.jpg")}}" height="400px">
+        
             <h1 class="titulo">{{$item['title']}}</h1>
-            <h2 class="subtitulo">{{$item['subtitle']}}</h2>
         </div>
         @endforeach
     </div>

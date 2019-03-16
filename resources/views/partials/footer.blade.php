@@ -1,4 +1,4 @@
-@if ($n)
+@if ($EstiloDePagina!="default")
     @if (url('/login'))
         <footer class="border-top footer text-muted">
             <div class="container">

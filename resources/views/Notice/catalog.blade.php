@@ -2,7 +2,7 @@
 @section('content')
     <div class="board">
     <div class="row">
-    @foreach ($arrayNoticias as $noticia)
+    @foreach ($ListadoDeNoticias as $noticia)
         <div class="card col s6 contenedor">
             <div class="card-image">
                 <a href="{{url('/Notice/show/'.$noticia['title'])}}">
