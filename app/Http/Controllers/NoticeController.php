@@ -3,24 +3,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Notice;
-use App\IPlantillaDePagina;
-use App\ImagesCollection;
-use App\Images;
 use Illuminate\Support\Facades\Auth;
+use App\FormatoDePagina;
 use Validator;
 use Response;
 use Storage;
-class NoticeController extends Controller implements IPlantillaDePagina
+class NoticeController extends Controller
 {
     //----------------------------Propiedades o atributos-------------------------
     private $insertarNoticia;
     private $ListadoDeNoticias;//Contendra todas las noticias para la vista Notice.index
     private $insertarImagen;
-    private $numeroImagenes;
     //----------------------------Metodos-----------------------------------------
-    public function DarVistaListadoDeNoticias(){
+    public function VistaListadoDeNoticias(){
         $this->ListadoDeNoticias = $this->getListadoDeNoticiasOrdenadasEnDescenso();
-        return view('Notice.catalog',array('ListadoDeNoticias'=>$this->ListadoDeNoticias,"EstiloDePagina"=>$this->setEstilodeBarraDeNavegacionyFooter()));
+        return view('Notice.catalog',array('ListadoDeNoticias'=>$this->ListadoDeNoticias,
+                "EstiloDePagina"=> FormatoDePagina::DEFAULT()));
     }
 
     private function getListadoDeNoticiasOrdenadasEnDescenso(){
@@ -29,38 +27,20 @@ class NoticeController extends Controller implements IPlantillaDePagina
         return $ListadoOrdenadaPorFechaDeModificacion->values()->all();
     }
 
-    public function DarVistaDeNoticiaSeleccionada($title){
-        $infonoticia=$this->ObtenerInformacionDeLaNoticiaSeleccionada($title);
-        dd($infonoticia);
-        $this->ObtenerNumeroDeImagenesDeLaNoticia($title);
+    public function VistaSoloUnaNoticia($title){
+        $infonoticia=Notice::all()->where("title","==",$title);
+        $imagenes=\Storage::disk("local")->files($title);
         return view("Notice.show")->with("noticia",$infonoticia)
-            ->with("ColeccionImagenes",array())
-            ->with("EstiloDePagina",$this->setEstilodeBarraDeNavegacionyFooter("PlantillaDeNoticia"));
+            ->with("EstiloDePagina",FormatoDePagina::NOTICIA())
+            ->with("Imagenes",$imagenes);
     }
-    private function ObtenerInformacionDeLaNoticiaSeleccionada($title){
-        return $noticiaSeleccionada= Notice::where("title","==",$title);
-    }
-    private function ObtenerNumeroDeImagenesDeLaNoticia($title){
-        $this->numeroImagenes=\DB::select('select images_num from noticie where title = ?', [$title]);
-    }
-    private function DarImagenesDeLaNoticia($title,$numeroImagenes){
-        $ListadoDeImagenes=new ImagesCollection($title,$numeroImagenes);
-        return $ListadoDeImagenes->DarColeccionImagenes();
-    }
-    
+   
     public function getVistaAdd(){
-        $this->cambiarBarraNavyFooter=true;
-        return view("Notice.add")->with("EstiloDePagina",$this->setEstilodeBarraDeNavegacionyFooter());
-    }
-    
-    public function setEstilodeBarraDeNavegacionyFooter($default="default"){
-        $estilo = $default;
-        return $estilo;
+        return view("Notice.add")->with("EstiloDePagina",FormatoDePagina::DEFAULT());
     }
     //Estas Funciones son para Guardar Datos de noticias
     public function AlmacenarNoticia(Request $request){
         $this->EstablecerNoticia($request);
-        $this->AlmacenarImagenes($request);
         $this->insertarNoticia->save();
         return redirect()->action("HomeController@Panel");
     }
@@ -72,15 +52,11 @@ class NoticeController extends Controller implements IPlantillaDePagina
         $this->insertarNoticia->autor =Auth::user()->name;
         $this->insertarNoticia->fecha = date("Y-m-d H:m:s");
         $this->insertarNoticia->images_num = $request->input("num_imgs");
-    }
-    private function AlmacenarImagenes(Request $request){
         for($i=1;$i<=$this->insertarNoticia->images_num;$i++){
-            $imagen = new Images();
-            $imagen->EstablecerTitulo($this->insertarNoticia->title);
-            $imagen->EstablecerNombre("".$i);
-            $imagen->EstablecerFormato($request->file("imagen".$i)->getClientOriginalExtension());
-            $imagen->AlmacenarImagen($request->file('imagen'.$i)->getRealPath());
-        }
+            \Storage::put($this->insertarNoticia->title."/".$i."."
+            .$request->file("imagen".$i)->getClientOriginalExtension()
+            , file_get_contents($request->file("imagen".$i)));
+        } 
     }
     //Fin de las noticias que guardan datos
 
