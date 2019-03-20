@@ -17,8 +17,12 @@ class NoticeController extends Controller
     //----------------------------Metodos-----------------------------------------
     public function VistaListadoDeNoticias(){
         $this->ListadoDeNoticias = $this->getListadoDeNoticiasOrdenadasEnDescenso();
+        foreach($this->ListadoDeNoticias as $noticia){
+            $coleccion[$noticia["title"]]=\Storage::disk("local")->files($noticia["title"]);
+        }
         return view('Notice.catalog',array('ListadoDeNoticias'=>$this->ListadoDeNoticias,
-                "EstiloDePagina"=> FormatoDePagina::DEFAULT()));
+                "EstiloDePagina"=> FormatoDePagina::DEFAULT()))
+                ->with("imagenes",$coleccion);
     }
 
     private function getListadoDeNoticiasOrdenadasEnDescenso(){

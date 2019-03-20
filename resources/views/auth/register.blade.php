@@ -1,13 +1,51 @@
-@extends('layouts.app')
-
+@extends('layouts.layout')
 @section('content')
+    <div class="container">
+        <div class="row" style="margin-top:20px">
+            <div class="col s2"></div>
+            <div class="card col s8">
+                <span class="card-title">Register</span>
+                <div class="divider"></div>
+                <div class="card-content">
+                    <form action="{{ route('register') }}" method="post">
+                        {{csrf_field()}}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="name" type="text" class="{{ $errors->has('name') ? ' invalid' : 'validate' }}" name="name" required>
+                                <label for="name">Nombre y Apellidos</label>
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="email" type="email" class="{{ $errors->has('email') ? ' invalid' : 'validate' }}" name="email" required>
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="password" type="password" class="validate" name="password" required>
+                                <label for="password">Password</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Register') }}
+                            </button>
+                        </div>
+                    </form>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+@stop
+<!--
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
+    <div class="row" style="margin-top:20px">
+        <div class="col s2"></div>
+            <div class="card s8">
+                <span>{{ __('Register') }}</span>
+                <div class="card-content">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -71,7 +109,7 @@
                     </form>
                 </div>
             </div>
-        </div>
     </div>
 </div>
-@endsection
+-->
+
