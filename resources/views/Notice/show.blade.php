@@ -7,19 +7,22 @@
             </a>
         @endforeach  
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col s12" style="font:24">
-                <h1>{{$noticia[0]['title']}}</h1>
+    @foreach ($noticia as $noti)
+        <div class="container">
+            <div class="row">
+                <div class="col s12" style="font:24">
+                    <h1>{{$noti["title"]}}</h1>
+                </div>
+                <div class="col s12">
+                    <h3 style="margin-top:0">{{$noti['subtitle']}}</h2>
+                </div>
+                <div class="col s12">
+                    <p>{{$noti['description']}}</p>
+                </div>
             </div>
-            <div class="col s12">
-                <h3 style="margin-top:0">{{$noticia[0]['subtitle']}}</h2>
-            </div>
-            <div class="col s12">
-                <p>{{$noticia[0]['description']}}</p>
-            </div>
+            
         </div>
         
-    </div>
+    @endforeach
     
 @endsection

@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                <h5>Creado por: {{$noticia[0]['autor']}} el {{$noticia[0]['fecha']}}</h5>
+                <h5>Creado por: {{$noti['autor']}} el {{$noti['fecha']}}</h5>
             </div>
             <div class="col s12">
                 &copy; 2019 - Cobach - <a>Privacy</a>
