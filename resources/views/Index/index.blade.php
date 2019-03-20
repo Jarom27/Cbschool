@@ -5,8 +5,7 @@
     <div class="carrusel carousel carousel-slider center">
         @foreach ($ListadoDeCincoNoticias as $item)
         <div class="carousel-item ">
-            <img src="{{ asset("storage/".$item['title']."/1.jpg")}}" height="400px">
-        
+            <img src="{{ asset("storage/".$imagenes[$item["title"]][0])}}" height="400px">
             <h1 class="titulo">{{$item['title']}}</h1>
         </div>
         @endforeach
