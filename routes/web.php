@@ -14,6 +14,7 @@
 Route::get('/','IndexController@getIndex');
 Route::get('/Notice','NoticeController@VistaListadoDeNoticias');
 Route::get('/Notice/show/{title}','NoticeController@VistaSoloUnaNoticia');
+Route::get('/About',"IndexController@getAbout");
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => "auth"], function () {

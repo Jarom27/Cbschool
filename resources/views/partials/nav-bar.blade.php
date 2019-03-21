@@ -23,7 +23,7 @@
                             <li><a class="waves-effect" href="{{url('/')}}">Inicio</a></li>
                             <li><a class="waves-effect" href="{{url('/Notice')}}">Noticias</a></li>
                             <li><a class="waves-effect dropdown-trigger agenda" data-target="Agenda" >Agenda</a></li>
-                            <li><a class="waves-effect">Acerca de</a></li>
+                            <li><a class="waves-effect" href="{{url('/About')}}">Acerca de</a></li>
                         </ul>
                     </center>
                 </div>

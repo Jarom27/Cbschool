@@ -21,6 +21,6 @@ class IndexController extends Controller
     }
     //Retorna la vista del acerca de
     public function getAbout(){
-
+        return \view("Index.about")->with("EstiloDePagina",FormatoDePagina::DEFAULT());
     }
 }
