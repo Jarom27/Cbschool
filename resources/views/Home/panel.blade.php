@@ -39,7 +39,7 @@
                                         <div id="{{$noti->title}}">
                                             <span >{{$noti->title}}</span>
                                             <a class="secondary-content delete" id="{{$noti->title}}" onclick="Borrar(this.id)" ><i class="material-icons">delete</i></a>
-                                            <a class="secondary-content create modal-trigger" href="#modal1" id="{{$noti->title}}" onclick="Edit(this.id)"><i class="material-icons">create</i></a>
+                                            <a class="secondary-content create modal-trigger" href="{{url('/home/edit/'.$noti->title)}}" id="{{$noti->title}}" onclick="Edit(this.id)"><i class="material-icons">create</i></a>
                                         </div>
                                         <div id="modal1" class="modal">
                                             <div class="modal-content">
