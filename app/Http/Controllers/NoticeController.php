@@ -42,6 +42,11 @@ class NoticeController extends Controller
     public function getVistaAdd(){
         return view("Notice.add")->with("EstiloDePagina",FormatoDePagina::DEFAULT());
     }
+    public function getVistaEdit($title){
+        $noticiaAEditar = Notice::all()->where("title","==",$title);
+        return view("Notice.edit")->with("EstiloDePagina",FormatoDePagina::LOGIN())
+            ->with("noticia",$noticiaAEditar);
+    }
     //Estas Funciones son para Guardar Datos de noticias
     public function AlmacenarNoticia(Request $request){
         $this->EstablecerNoticia($request);
