@@ -8,12 +8,14 @@ use App\FormatoDePagina;
 use Validator;
 use Response;
 use Storage;
+use Illuminate\Support\Facades\Input;
 class NoticeController extends Controller
 {
     //----------------------------Propiedades o atributos-------------------------
     private $insertarNoticia;
     private $ListadoDeNoticias;//Contendra todas las noticias para la vista Notice.index
     private $insertarImagen;
+    private $noticiaAEditar;
     //----------------------------Metodos-----------------------------------------
     public function VistaListadoDeNoticias(){
         $this->ListadoDeNoticias = $this->getListadoDeNoticiasOrdenadasEnDescenso();
@@ -43,9 +45,10 @@ class NoticeController extends Controller
         return view("Notice.add")->with("EstiloDePagina",FormatoDePagina::DEFAULT());
     }
     public function getVistaEdit($title){
-        $noticiaAEditar = Notice::all()->where("title","==",$title);
+        $this->noticiaAEditar = Notice::all()->where("title","==",$title);
         return view("Notice.edit")->with("EstiloDePagina",FormatoDePagina::LOGIN())
-            ->with("noticia",$noticiaAEditar);
+            ->with("noticia",$this->noticiaAEditar)
+            ->with("title",$title);
     }
     //Estas Funciones son para Guardar Datos de noticias
     public function AlmacenarNoticia(Request $request){
@@ -75,7 +78,22 @@ class NoticeController extends Controller
         $noticiaABorrar->delete();
         return response()->json();
     }  
-    public function Update(){
+    public function Update($title){
         //TODO: es necesario crear una funcion para poder editar las noticias usando un http request put
+        $this->noticiaAEditar = Notice::all()->where("title","==",$title)->first();
+
+        $this->noticiaAEditar->title = Input::get("title");
+        $this->noticiaAEditar->subtitle = Input::get("subtitle");
+        $this->noticiaAEditar->description=Input::get("description");
+        $imagenes = Storage::disk("local")->allFiles($title);
+        Storage::disk("local")->makeDirectory($this->noticiaAEditar->title);
+        for($i=0;$i<=count($imagenes);$i++){
+            $nombre = Storage::name($imagenes[$i]);
+            //Storage::disk("local")->move($imagenes[$i],$this->noticiaAEditar->title."/".$nombre.".".$tipo);
+            dd($ti);
+        }   
+        
+        $this->noticiaAEditar->save();
+        return redirect()->action("HomeController@Panel");
     }     
 }

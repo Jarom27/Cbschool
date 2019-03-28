@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
 <div class="row">     
-    <form action="{{url('/home/edit')}}" enctype="multipart/form-data" method="put">
+    <form action="{{url('/home/edit/'.$title)}}" enctype="multipart/form-data" method="post">
             {{csrf_field()}}
             <div class="row">   
                 <div class="container">

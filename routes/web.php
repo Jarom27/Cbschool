@@ -23,5 +23,5 @@ Route::group(['middleware' => "auth"], function () {
     Route::get("/home/edit/{title}","NoticeController@getVistaEdit");
     Route::post('/home/add', "NoticeController@AlmacenarNoticia");
     Route::delete('/home/delete',["as"=>"borrar","uses"=>"NoticeController@DeleteNoticiayRecursos"]);
-    Route::put('/home/edit',["as"=>"edit","uses"=>"NoticeController@Update"]);
+    Route::post('/home/edit/{title}',"NoticeController@Update");
 });
