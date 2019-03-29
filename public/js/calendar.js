@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -24803,10 +24803,10 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./resources/assets/js/app.jsx":
-/*!*************************************!*\
-  !*** ./resources/assets/js/app.jsx ***!
-  \*************************************/
+/***/ "./resources/assets/js/calendar.jsx":
+/*!******************************************!*\
+  !*** ./resources/assets/js/calendar.jsx ***!
+  \******************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -24836,57 +24836,95 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-/**
-*	Here goes all magic
-*/
+var centrari = "marginLeft:auto";
+var centrard = "marginRight:auto";
 
-var imagen = "/CB/Resources/images/1.jpg";
-var width = "100%";
-var height = "400px";
-
-var About =
+var ColumnCalendar =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(About, _Component);
+  _inherits(ColumnCalendar, _Component);
 
-  function About() {
-    _classCallCheck(this, About);
+  function ColumnCalendar() {
+    _classCallCheck(this, ColumnCalendar);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(About).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(ColumnCalendar).apply(this, arguments));
   }
 
-  _createClass(About, [{
+  _createClass(ColumnCalendar, [{
     key: "render",
     value: function render() {
-      var style = {
-        marginTop: "20px"
-      };
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        style: style,
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col s1"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "center-align"
-      }, "Bienvendos a Cobach Plantel Obregon 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: imagen,
-        width: width,
-        height: height
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Un colegio con grandes expectativas"));
+      }, "Domingo")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col s2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "center-align"
+      }, "Lunes")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col s2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "center-align"
+      }, "Martes")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col s2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "center-align"
+      }, "Miercoles")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col s2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "center-align"
+      }, "Jueves")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col s2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "center-align"
+      }, "Viernes")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col s1"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "center-align"
+      }, "Sabado")));
     }
   }]);
 
-  return About;
+  return ColumnCalendar;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(About, null), document.getElementById('about'));
+var Calendar =
+/*#__PURE__*/
+function (_Component2) {
+  _inherits(Calendar, _Component2);
+
+  function Calendar() {
+    _classCallCheck(this, Calendar);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Calendar).apply(this, arguments));
+  }
+
+  _createClass(Calendar, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: [centrari, centrard]
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ColumnCalendar, null));
+    }
+  }]);
+
+  return Calendar;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Calendar, null), document.getElementById("calendar"));
 
 /***/ }),
 
-/***/ 0:
-/*!*******************************************!*\
-  !*** multi ./resources/assets/js/app.jsx ***!
-  \*******************************************/
+/***/ 1:
+/*!************************************************!*\
+  !*** multi ./resources/assets/js/calendar.jsx ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Cbschool3\resources\assets\js\app.jsx */"./resources/assets/js/app.jsx");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Cbschool3\resources\assets\js\calendar.jsx */"./resources/assets/js/calendar.jsx");
 
 
 /***/ })

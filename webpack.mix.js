@@ -12,3 +12,5 @@ const mix = require('laravel-mix');
  */
 
 mix.react('resources/assets/js/app.jsx', 'public/js');
+mix.react("resources/assets/js/calendar.jsx","public/js");
+mix.react("resources/assets/js/schedule.jsx","public/js");
