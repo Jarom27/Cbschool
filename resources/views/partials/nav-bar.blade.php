@@ -1,6 +1,14 @@
 @if ($EstiloDePagina!="default")
     <div class="logo center ">
-        <img src="/CB/Resources/images/Logo.png"/>
+        <div class="row">
+            <div class="col s3">
+                <a class="btn-floating  btn-large atras" style="margin-top:15px;" href="{{url("/Notice")}}"><i class=" material-icons white black-text">arrow_back</i></a>
+            </div>
+            <div class=" col s6">
+                <img src="{{asset("/images/Logo.png")}}"/>
+            </div>
+            
+        </div>
         <div class="divider"></div>
     </div>    
 @else
@@ -28,7 +36,7 @@
                     </center>
                 </div>
             </center>
-            <ul id="options" class="sidenav">
+            <ul id="options" class="sidenav " style="">
                 <li><a class="waves-effect">Inicio</a></li>
                 <li><a class="waves-effect">Noticias</a></li>
                 <li><a class="waves-effect">Agenda</a></li>

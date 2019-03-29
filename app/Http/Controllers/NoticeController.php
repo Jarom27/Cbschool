@@ -58,6 +58,10 @@ class NoticeController extends Controller
     }
     private function EstablecerNoticia(Request $request){
         $this->insertarNoticia = new Notice();
+        $validador = \Validator::make($request->all(),[
+            "title" => "required|size:100|pattern:[^*,<,>,@]",
+            "subtitle"=>"required|size:150|pattern:[^*,<,>,@]"
+        ]);
         $this->insertarNoticia->title = $request->input('title');
         $this->insertarNoticia->subtitle = $request->input('subtitle');
         $this->insertarNoticia->description = $request->input('description');

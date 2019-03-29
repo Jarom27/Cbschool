@@ -11,21 +11,21 @@
                          
                         <div class="input-field col s12">
                             <label for="title">Titulo de la noticia</label>
-                            <input type="text" name="title" id="title" required>
+                            <input type="text" name="title" id="title" required pattern="[^*,<,>,@]" maxlength="100">
                         </div>
                         <div class="input-field col s12">                  
                             <label for="subtitle">Subtitulo de la noticia</label>
-                            <input type="text" name="subtitle" id="subtitle" required>
+                            <input type="text" name="subtitle" id="subtitle" required pattern="[^*,<,>,@]" maxlength="150">
                         </div>
                         <div class="input-field col s12">
-                            <textarea id="description" class="materialize-textarea" name="description" rows="30" required></textarea>
+                            <textarea id="description" class="materialize-textarea" name="description" rows="30" required ></textarea>
                             <label for="description">Descripcion de la noticia</label>
                         </div>
                         <div class="col s12">
                             <div class="row">
                                 <div class="col s8 input-field">
                                     <label for="num_imgs">Numero de imagenes</label>
-                                    <input type="number" name="num_imgs" id="num_imgs" min="1" max="99" value="1">
+                                    <input type="number" disabled name="num_imgs" id="num_imgs" min="1" max="99" value="1">
                                 </div>
                                    <a class="btn col s4" type="button" style="margin-top:30px" id="insertar">
                                        Insertar
@@ -43,7 +43,7 @@
                                         <input class="file-path validate " type="text">
                                     </div>
                                 </div>
-                                <a class='col s2' style='margin-top:35px'><i class='material-icons red-text'>cancel</i></a>
+                                
                             </div>
                         </div>
                         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
@@ -58,10 +58,9 @@
             var cont=1;
             $("#insertar").click(function(){
                 cont++;
-                alert("Clickeo "+cont);
                 $('#num_imgs').attr("value",cont);
                 var nombre= 'imagen'+cont;
-                var div= "<div class='input-field file-field col s10'><div class='btn'><span>File</span><input type='file'name="+nombre+" required></div><div class='file-path-wrapper'><input class='file-path validate' type='text'></div></div><a class='col s2' style='margin-top:35px' id="+nombre+"><i class='material-icons red-text'>cancel</i></a>";
+                var div= "<div class='input-field file-field col s10'><div class='btn'><span>File</span><input type='file'name="+nombre+" required></div><div class='file-path-wrapper'><input class='file-path validate' type='text'></div></div>";
                 //Imprimir el nuevo contenido para las imagenes
                 $('#imagenes').append(div);    
             });
