@@ -15,8 +15,8 @@
     <header class="navbar-fixed">
         <nav class="nav-wrapper navigation light-blue darken-1 ">
             <ul id="Agenda" class="dropdown-content orange-text lighten-1">
-                <li><a class="orange-text lighten-1">Calendario</a></li>
-                <li><a href="#!" class="orange-text lighten-1">Horarios</a></li>
+                <li><a class="orange-text lighten-1" href="{{url("/Calendar")}}">Calendario</a></li>
+                <li><a href="{{url("/Schedule")}}" class="orange-text lighten-1">Horarios</a></li>
             </ul>
             <div class="logo center z-depth-0">
                 <img src="/CB/Resources/images/Logo.png" />
@@ -36,11 +36,11 @@
                     </center>
                 </div>
             </center>
-            <ul id="options" class="sidenav " style="">
-                <li><a class="waves-effect">Inicio</a></li>
-                <li><a class="waves-effect">Noticias</a></li>
-                <li><a class="waves-effect">Agenda</a></li>
-                <li><a class="waves-effect">Acerca de</a></li>
+            <ul id="options" class="sidenav" style="">
+                <li><a class="waves-effect" href="{{url("/")}}">Inicio</a></li>
+                <li><a class="waves-effect" href="{{url("/Notice")}}">Noticias</a></li>
+                <li><a class="waves-effect" data-target="Agenda">Agenda</a></li>
+                <li><a class="waves-effect" href="{{url("/About")}}">Acerca de</a></li>
             </ul>
         </nav>
     </header>
