@@ -87,12 +87,11 @@ class NoticeController extends Controller
         $this->noticiaAEditar->description=Input::get("description");
         $imagenes = Storage::disk("local")->allFiles($title);
         Storage::disk("local")->makeDirectory($this->noticiaAEditar->title);
-        for($i=0;$i<=count($imagenes);$i++){
-            $nombre = Storage::name($imagenes[$i]);
-            //Storage::disk("local")->move($imagenes[$i],$this->noticiaAEditar->title."/".$nombre.".".$tipo);
-            dd($ti);
+        for($i=0;$i<=count($imagenes)-1;$i++){
+            $filename = basename($imagenes[$i]);
+            Storage::disk("local")->move($imagenes[$i],$this->noticiaAEditar->title."/".$filename);
         }   
-        
+        Storage::disk("local")->deleteDirectory($title);
         $this->noticiaAEditar->save();
         return redirect()->action("HomeController@Panel");
     }     
